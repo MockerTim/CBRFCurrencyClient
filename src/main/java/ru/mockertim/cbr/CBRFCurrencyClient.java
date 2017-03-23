@@ -80,9 +80,9 @@ public class CBRFCurrencyClient {
     }
 
     /**
-     * Если dateStr совпадает с датой, содержащейся в загруженных с сайта ЦБР данных,
-     * то записывает эти данные в файл
-     * @param dateStr - дата, на которую нужно загрузить курсы валют
+     * If the dateStr is equal to date retained from cbrf data then
+     * write that data to file
+     * @param dateStr - date to get the currency rates on
      * @throws Exception
      */
     public void writeXmlCurrencyRateOnDateToFile(String dateStr) throws Exception {
