@@ -22,7 +22,8 @@ import java.io.StringReader;
 import java.net.MalformedURLException;
 
 /**
- * Клиент для получения дынных о курсах валют с сайта ЦБР.
+ * Simple non-gui client of the currency rates web-service
+ * of the Central Bank of the Russian Federation.
  *
  * Created at 13:33 08.10.14
  *
@@ -49,7 +50,7 @@ public class CBRFCurrencyClient {
     }
 
     /**
-     * Возвращает дату курсов, содержащуюся в данных, полученных с сайта ЦБР.
+     * Returns the currency rates date contained in the web-service return data.
      * @param requestDate
      * @param valuteDataXmlStr
      * @return
@@ -107,7 +108,7 @@ public class CBRFCurrencyClient {
     }
 
     /**
-     * Получить курсы валют на текущую дату в виде xml-строки
+     * Get currency rates for today as xml string
      * @param dateStr date string in the YYYY-MM-DD format
      * @return
      */
@@ -127,7 +128,7 @@ public class CBRFCurrencyClient {
     }
 
     /**
-     * Получить курсы валют на текущую дату в виде отформатированной строки
+     * Get currency rates for today as formatted string
      * @param dateStr date string in the YYYY-MM-DD format
      * @return
      */
@@ -137,7 +138,7 @@ public class CBRFCurrencyClient {
     }
 
     /**
-     * Записывает xml-данные в файл
+     * Writes xml data to the file
      * @param cursXmlStr
      * @param fileName
      * @throws IOException
@@ -171,6 +172,7 @@ public class CBRFCurrencyClient {
     }
 
     /**
+     * Retains data we are interested in and returns them in text format
      * Разбирает xml-разметку, и возвращает значимую для нас часть данных в текстовом формате
      * @param valuteDataXmlStr
      * @param dateStr
@@ -185,7 +187,7 @@ public class CBRFCurrencyClient {
         NodeList nodes = doc.getElementsByTagName("ValuteCursOnDate");
         StringBuffer cursBuffer = new StringBuffer();
         cursBuffer.append("\n");
-        cursBuffer.append("Курсы валют на " + dateStr + ":\n\n");
+        cursBuffer.append("Currencies on " + dateStr + ":\n\n");
         int currenciesAmount = nodes.getLength();
         for (int i = 0; i < currenciesAmount; i++) {
             Element element = (Element) nodes.item(i);
@@ -205,14 +207,14 @@ public class CBRFCurrencyClient {
             line = (Element) chCode.item(0);
             cursBuffer.append("VchCode: " + getCharacterDataFromElement(line) + "\n\n");
         }
-        cursBuffer.append("Количество валют: " + currenciesAmount + "\n\n");
+        cursBuffer.append("Amount of currencies: " + currenciesAmount + "\n\n");
         return cursBuffer.toString();
     }
 
     /**
-     * Возвращает данные, которые содержатся внутри xml-тега
-     * @param e абстракция тега, например: <Vcode>RUB</Vcode>
-     * @return содержимое тега, например: RUB
+     * Retains data contained inside of the xml tag
+     * @param e tag abstraction, <Vcode>RUB</Vcode>, for instance.
+     * @return tag text, RUB, for instance
      */
     private String getCharacterDataFromElement(Element e) {
         Node child = e.getFirstChild();
