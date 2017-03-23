@@ -1,0 +1,120 @@
+/**
+ * GetSeldCursOnDateResponse.java
+ *
+ * This file was auto-generated from WSDL
+ * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
+ */
+
+package ru.cbr.web;
+
+public class GetSeldCursOnDateResponse  implements java.io.Serializable {
+    private ru.cbr.web.GetSeldCursOnDateResponseGetSeldCursOnDateResult getSeldCursOnDateResult;
+
+    public GetSeldCursOnDateResponse() {
+    }
+
+    public GetSeldCursOnDateResponse(
+           ru.cbr.web.GetSeldCursOnDateResponseGetSeldCursOnDateResult getSeldCursOnDateResult) {
+           this.getSeldCursOnDateResult = getSeldCursOnDateResult;
+    }
+
+
+    /**
+     * Gets the getSeldCursOnDateResult value for this GetSeldCursOnDateResponse.
+     * 
+     * @return getSeldCursOnDateResult
+     */
+    public ru.cbr.web.GetSeldCursOnDateResponseGetSeldCursOnDateResult getGetSeldCursOnDateResult() {
+        return getSeldCursOnDateResult;
+    }
+
+
+    /**
+     * Sets the getSeldCursOnDateResult value for this GetSeldCursOnDateResponse.
+     * 
+     * @param getSeldCursOnDateResult
+     */
+    public void setGetSeldCursOnDateResult(ru.cbr.web.GetSeldCursOnDateResponseGetSeldCursOnDateResult getSeldCursOnDateResult) {
+        this.getSeldCursOnDateResult = getSeldCursOnDateResult;
+    }
+
+    private java.lang.Object __equalsCalc = null;
+    public synchronized boolean equals(java.lang.Object obj) {
+        if (!(obj instanceof GetSeldCursOnDateResponse)) return false;
+        GetSeldCursOnDateResponse other = (GetSeldCursOnDateResponse) obj;
+        if (obj == null) return false;
+        if (this == obj) return true;
+        if (__equalsCalc != null) {
+            return (__equalsCalc == obj);
+        }
+        __equalsCalc = obj;
+        boolean _equals;
+        _equals = true && 
+            ((this.getSeldCursOnDateResult==null && other.getGetSeldCursOnDateResult()==null) || 
+             (this.getSeldCursOnDateResult!=null &&
+              this.getSeldCursOnDateResult.equals(other.getGetSeldCursOnDateResult())));
+        __equalsCalc = null;
+        return _equals;
+    }
+
+    private boolean __hashCodeCalc = false;
+    public synchronized int hashCode() {
+        if (__hashCodeCalc) {
+            return 0;
+        }
+        __hashCodeCalc = true;
+        int _hashCode = 1;
+        if (getGetSeldCursOnDateResult() != null) {
+            _hashCode += getGetSeldCursOnDateResult().hashCode();
+        }
+        __hashCodeCalc = false;
+        return _hashCode;
+    }
+
+    // Type metadata
+    private static org.apache.axis.description.TypeDesc typeDesc =
+        new org.apache.axis.description.TypeDesc(GetSeldCursOnDateResponse.class, true);
+
+    static {
+        typeDesc.setXmlType(new javax.xml.namespace.QName("http://web.cbr.ru/", ">GetSeldCursOnDateResponse"));
+        org.apache.axis.description.ElementDesc elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("getSeldCursOnDateResult");
+        elemField.setXmlName(new javax.xml.namespace.QName("http://web.cbr.ru/", "GetSeldCursOnDateResult"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://web.cbr.ru/", ">>GetSeldCursOnDateResponse>GetSeldCursOnDateResult"));
+        elemField.setMinOccurs(0);
+        elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
+    }
+
+    /**
+     * Return type metadata object
+     */
+    public static org.apache.axis.description.TypeDesc getTypeDesc() {
+        return typeDesc;
+    }
+
+    /**
+     * Get Custom Serializer
+     */
+    public static org.apache.axis.encoding.Serializer getSerializer(
+           java.lang.String mechType, 
+           java.lang.Class _javaType,  
+           javax.xml.namespace.QName _xmlType) {
+        return 
+          new  org.apache.axis.encoding.ser.BeanSerializer(
+            _javaType, _xmlType, typeDesc);
+    }
+
+    /**
+     * Get Custom Deserializer
+     */
+    public static org.apache.axis.encoding.Deserializer getDeserializer(
+           java.lang.String mechType, 
+           java.lang.Class _javaType,  
+           javax.xml.namespace.QName _xmlType) {
+        return 
+          new  org.apache.axis.encoding.ser.BeanDeserializer(
+            _javaType, _xmlType, typeDesc);
+    }
+
+}
