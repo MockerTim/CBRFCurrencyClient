@@ -31,7 +31,8 @@ import java.net.MalformedURLException;
  */
 public class CBRFCurrencyClient {
 
-    private String endpoint = "http://www.cbr.ru/DailyInfoWebServ/DailyInfo.asmx";
+    private static final String endpoint =
+            "http://www.cbr.ru/DailyInfoWebServ/DailyInfo.asmx";
 
     public static void main(String [] args) {
         try {
@@ -40,7 +41,6 @@ public class CBRFCurrencyClient {
                 dateStr = args[0];
             }
             CBRFCurrencyClient client = new CBRFCurrencyClient();
-            client.setEndpoint("http://www.cbr.ru/DailyInfoWebServ/DailyInfo.asmx");
             client.writeXmlCurrencyRateOnDateToFile(dateStr);
             String ratesOnDateXml = client.getCursOnDateXml(dateStr);
             client.getRatesDate(dateStr, ratesOnDateXml);
@@ -85,7 +85,8 @@ public class CBRFCurrencyClient {
      * @param dateStr - date to get the currency rates on
      * @throws Exception
      */
-    public void writeXmlCurrencyRateOnDateToFile(String dateStr) throws Exception {
+    public void writeXmlCurrencyRateOnDateToFile(String dateStr)
+            throws Exception {
         String cursXmlStr = getCursOnDateXml(dateStr);
         //System.out.println(cursXmlStr);
         String cursStr = getCursOnDate(dateStr);
@@ -100,25 +101,19 @@ public class CBRFCurrencyClient {
     }
 
     /**
-     *
-     * @param endpoint
-     */
-    public void setEndpoint(String endpoint) {
-        this.endpoint = endpoint;
-    }
-
-    /**
      * Get currency rates for today as xml string
      * @param dateStr date string in the YYYY-MM-DD format
      * @return
      */
-    public String getCursOnDateXml(String dateStr) throws ServiceException, ParserConfigurationException,
+    public String getCursOnDateXml(String dateStr)
+            throws ServiceException, ParserConfigurationException,
             SAXException, IOException {
         Call call = initServiceCall();
         System.out.print("Getting currency rates from CBR ...");
         Object[] params = new Object[] {dateStr};
         System.out.print(" call invocation ...");
-        GetCursOnDateXMLResponseGetCursOnDateXMLResult ret = (GetCursOnDateXMLResponseGetCursOnDateXMLResult)
+        GetCursOnDateXMLResponseGetCursOnDateXMLResult ret =
+                (GetCursOnDateXMLResponseGetCursOnDateXMLResult)
                 call.invoke(params);
         System.out.print(" done ...");
         MessageElement[] me = ret.get_any();
@@ -132,7 +127,8 @@ public class CBRFCurrencyClient {
      * @param dateStr date string in the YYYY-MM-DD format
      * @return
      */
-    public String getCursOnDate(String dateStr) throws ServiceException, ParserConfigurationException,
+    public String getCursOnDate(String dateStr)
+            throws ServiceException, ParserConfigurationException,
             SAXException, IOException {
         return parseXmlResult(getCursOnDateXml(dateStr), dateStr);
     }
@@ -143,7 +139,8 @@ public class CBRFCurrencyClient {
      * @param fileName
      * @throws IOException
      */
-    public void writeCursToFile(String cursXmlStr, String fileName) throws IOException {
+    public void writeCursToFile(String cursXmlStr, String fileName)
+            throws IOException {
         BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
         writer.write(cursXmlStr);
         writer.flush();
@@ -156,16 +153,19 @@ public class CBRFCurrencyClient {
      * @throws ServiceException
      * @throws MalformedURLException
      */
-    private Call initServiceCall() throws ServiceException, MalformedURLException {
+    private Call initServiceCall()
+            throws ServiceException, MalformedURLException {
         System.out.print("Initializing service call ...");
         Service service = new Service();
         Call call = (Call) service.createCall();
         call.setTargetEndpointAddress(new java.net.URL(endpoint));
-        call.setOperationName(new QName("http://web.cbr.ru/", "GetCursOnDateXML"));
+        call.setOperationName(
+                new QName("http://web.cbr.ru/", "GetCursOnDateXML"));
         call.setSOAPActionURI("http://web.cbr.ru/GetCursOnDateXML");
         call.addParameter(new QName("http://web.cbr.ru/","On_date"),
                 Constants.XSD_DATETIME, ParameterMode.IN);
-        call.setReturnType(new QName("http://web.cbr.ru/", "GetCursOnDateXMLResult"),
+        call.setReturnType(
+                new QName("http://web.cbr.ru/", "GetCursOnDateXMLResult"),
                 GetCursOnDateXMLResponseGetCursOnDateXMLResult.class);
         System.out.println(" done.");
         return call;
@@ -173,7 +173,6 @@ public class CBRFCurrencyClient {
 
     /**
      * Retains data we are interested in and returns them in text format
-     * Разбирает xml-разметку, и возвращает значимую для нас часть данных в текстовом формате
      * @param valuteDataXmlStr
      * @param dateStr
      * @return
@@ -235,7 +234,8 @@ public class CBRFCurrencyClient {
      */
     private Document getDocument(String valuteDataXmlStr)
             throws ParserConfigurationException, SAXException, IOException {
-        DocumentBuilder db = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+        DocumentBuilder db =
+                DocumentBuilderFactory.newInstance().newDocumentBuilder();
         InputSource is = new InputSource();
         is.setCharacterStream(new StringReader(valuteDataXmlStr));
         return db.parse(is);
