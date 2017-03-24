@@ -27,7 +27,7 @@ import java.net.MalformedURLException;
  *
  * Created at 13:33 08.10.14
  *
- * @author Timur Shakuov (t.shakuov@gmail.com)
+ * @author Timur Shakuov (t.shakuov at gmail.com)
  */
 public class CBRFCurrencyClient {
 
@@ -212,7 +212,7 @@ public class CBRFCurrencyClient {
 
     /**
      * Retains data contained inside of the xml tag
-     * @param e tag abstraction, <Vcode>RUB</Vcode>, for instance.
+     * @param e tag abstraction, &lt;Vcode&gt;RUB&lt;/Vcode&gt;, for instance.
      * @return tag text, RUB, for instance
      */
     private String getCharacterDataFromElement(Element e) {
