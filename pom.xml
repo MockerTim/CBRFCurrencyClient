@@ -36,19 +36,19 @@
             <scope>test</scope>
         </dependency>
 
-        <dependency>
+        <!--dependency>
             <groupId>net.avh4.util</groupId>
             <artifactId>imagecomparison</artifactId>
             <version>0.0.2</version>
             <scope>test</scope>
-        </dependency>
+        </dependency-->
 
-        <dependency>
+        <!--dependency>
             <groupId>com.ibm.ws.j2ee</groupId>
             <artifactId>j2ee</artifactId>
             <version>11.0</version>
             <scope>compile</scope>
-        </dependency>
+        </dependency-->
 
         <dependency>
             <groupId>commons-io</groupId>
